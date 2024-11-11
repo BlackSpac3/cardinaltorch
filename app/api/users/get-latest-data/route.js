@@ -1,3 +1,4 @@
+import connectDB from "@lib/config/db";
 import userModel from "@lib/models/userModel";
 import { NextResponse } from "next/server";
 
@@ -6,6 +7,7 @@ export async function POST(request) {
   const { email } = body;
 
   try {
+    await connectDB();
     const user = await userModel
       .findOne({ "personal_info.email": email })
       .select(
