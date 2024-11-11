@@ -1,8 +1,7 @@
-import { authOptions } from "@app/api/auth/[...nextauth]/route";
+"use client";
 import CurrentInfo from "@components/admin_components/dashboard_components/CurrentInfo";
 import RecentActivities from "@components/admin_components/dashboard_components/RecentActivities";
 import RecentBlogs from "@components/admin_components/dashboard_components/RecentBlogs";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 const Dashboard = async () => {
@@ -17,7 +16,7 @@ const Dashboard = async () => {
         <div className="flex flex-col border-l tab-m:border-l-0 bg-white max-h-full w-full pl-5 tab-m:pl-0 pt-5 overflow-hidden">
           <div className="flex items-center justify-between w-full">
             <h1 className="text-lg ">Your recent blogs</h1>
-            <Link href="/blogs">
+            <Link href="/admin/blogs">
               <button className="text-xs border rounded-md px-3 py-1">
                 View all
               </button>

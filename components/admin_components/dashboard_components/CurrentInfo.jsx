@@ -1,51 +1,56 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@app/api/auth/[...nextauth]/route";
-import { getLatestUserData } from "@app/actions";
+"use client";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
+
+const fetchData = async (email) => {
+  try {
+    const response = await axios.post("/api/users/get-latest-data", {
+      email,
+    });
+    return response.data.data;
+  } catch (error) {
+    if (error.response.message) {
+      toast.error(error.response.message);
+      return {};
+    }
+    toast.error("Error connecting to server");
+    return {};
+  }
+};
 
 const CurrentInfo = async () => {
-  const session = await getServerSession(authOptions);
-  const resposnse = await getLatestUserData(session?.user?.email);
+  const { data: session } = useSession();
+  const data = await fetchData(session?.user?.email);
+
   const info_tags = [
     {
       icon: "document",
       title: "Posts",
-      amount: resposnse?.data?.total_posts,
+      amount: data?.total_posts,
     },
     {
       icon: "check-double",
       title: "Reads",
-      amount: resposnse?.data?.total_reads,
+      amount: data?.total_reads,
     },
     {
       icon: "file-edit",
       title: "Drafts",
-      amount: resposnse?.data?.total_drafts,
+      amount: data?.total_drafts,
     },
     {
       icon: "picture",
       title: "Images",
-      amount: resposnse?.data?.total_images,
+      amount: data?.total_images,
     },
   ];
-  // const getUserLatestData = async () => {
-  //   const res = await axios.post(`${url}/api/user/get-user`, { email });
-
-  //   if (res.data.success) {
-  //     const data = res.data.data;
-  //     let newUserData = { ...userData, ...data };
-  //     storeInSession("user", JSON.stringify(newUserData));
-  //     setUserData(newUserData);
-  //     console;
-  //   } else {
-  //     toast.error("Error getting user");
-  //   }
-  // };
 
   return (
     <div>
       <div className="">
         <h1 className="text-xl capitalize">{`Welcome, ${session?.user.first_name}`}</h1>
-        <p className="text-xs w-[60%] text-gray-500">
+        <p className="text-xs w-[60%] tab-s:w-full text-gray-500">
           Let's create awesome contents for your viewers
         </p>
       </div>
@@ -54,7 +59,7 @@ const CurrentInfo = async () => {
         {info_tags.map((tag, index) => (
           <div
             key={index}
-            className={`rounded-md py-3 px-3 ${
+            className={`rounded-md p-3 ${
               (index === 0 && "bg-[#2fae6010] text-primary") ||
               (index === 1 && "bg-[#2563eb10] text-blue-600") ||
               (index === 2 && "bg-[#ea580610] text-orange-600") ||

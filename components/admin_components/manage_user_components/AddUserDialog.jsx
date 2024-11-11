@@ -103,7 +103,7 @@ const AddUserDialog = ({ id, fetchfunc, query, acct_type }) => {
             name="user_type"
             id=""
             defaultValue={user_type}
-            className="border rounded-md px-2 py-1 text-sm"
+            className="border rounded-md px-2 py-1 text-sm outline-none"
             onChange={handleInputFieldChange}
           >
             <option value="admin">admin</option>

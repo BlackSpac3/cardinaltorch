@@ -1,12 +1,11 @@
-import { authOptions } from "@app/api/auth/[...nextauth]/route";
 import axios from "axios";
-import { getServerSession } from "next-auth";
 import MiniBlogCard from "./MiniBlogCard";
 import NoDataMessage from "../NoDataMessage";
+import { useSession } from "next-auth/react";
 
 const fetchRecentBlogs = async (user_id) => {
   try {
-    const response = await axios.post(`${process.env.NEXTAUTH_URL}/api/blogs`, {
+    const response = await axios.post("/api/blogs", {
       page: 1,
       max: 5,
       author_id: user_id,
@@ -14,13 +13,12 @@ const fetchRecentBlogs = async (user_id) => {
 
     return response.data.data;
   } catch (error) {
-    console.log(error);
     return [];
   }
 };
 
 const RecentBlogs = async () => {
-  const session = await getServerSession(authOptions);
+  const { data: session } = useSession();
   const blogs = await fetchRecentBlogs(session?.user?.user_id);
 
   return !blogs.length ? (

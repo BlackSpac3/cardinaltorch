@@ -1,7 +1,6 @@
 "use server";
 
 import jwt from "jsonwebtoken";
-import userModel from "@lib/models/userModel";
 import blogModel from "@lib/models/blogModel";
 import connectDB from "@lib/config/db";
 
@@ -24,29 +23,6 @@ export const verifyResetPassToken = async (token) => {
   const resposne = jwt.verify(token, process.env.NEXTAUTH_SECRET, jwtHandler);
 
   return resposne;
-};
-
-export const getLatestUserData = async (email) => {
-  try {
-    const user = await userModel
-      .findOne({ "personal_info.email": email })
-      .select(
-        "-personal_info.password -updatedAt -blogs -__v -account_info.default_pass -account_info.email_validation_status -account_info.type "
-      );
-
-    if (!user) {
-      return { success: false, message: "User Not Found" };
-    }
-
-    return {
-      success: true,
-      message: "User data retrieved",
-      data: user.account_info,
-    };
-  } catch (error) {
-    console.log(error);
-    return { success: false, message: "Unable to retrieve data" };
-  }
 };
 
 export const getStaticBlogs = async () => {
