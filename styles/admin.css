@@ -1,0 +1,231 @@
+::-moz-selection {
+  color: white;
+  background: #2fae60;
+}
+::selection {
+  color: white;
+  background: #2fae60;
+}
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
+.form-field-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.form-label {
+  color: #6b7280;
+  font-size: 14px;
+}
+/* .input-box {
+
+} */
+.bttn-red {
+  border-radius: 6px;
+  background-color: #ef4444;
+  padding: 8px 20px;
+  color: white;
+  transition-duration: 75ms;
+}
+
+.bttn-red:hover:enabled {
+  background-color: #e34141;
+}
+
+.bttn-red:disabled {
+  border-radius: 6px;
+  background-color: #f3f4f6;
+  padding: 8px 20px;
+  color: #9ea5b0;
+  transition-duration: 75ms;
+  cursor: not-allowed;
+}
+.bttn {
+  border-radius: 6px;
+  padding: 8px 20px;
+  transition-duration: 75ms;
+  cursor: pointer;
+}
+.bttn-primary {
+  border-radius: 6px;
+  background-color: #2fae60;
+  padding: 8px 20px;
+  color: white;
+  transition-duration: 75ms;
+  cursor: pointer;
+}
+
+.bttn-primary:hover:enabled {
+  background-color: #2da55b;
+}
+
+.bttn-primary:disabled {
+  border-radius: 6px;
+  background-color: #f3f4f6;
+  padding: 8px 20px;
+  color: #9ea5b0;
+  transition-duration: 75ms;
+  cursor: not-allowed;
+}
+
+.bttn-outline {
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: #e5e7eb;
+  background-color: transparent;
+  padding: 8px 20px;
+  color: #9ea5b0;
+  transition-duration: 75ms;
+}
+
+.bttn-outline:hover:enabled {
+  background-color: #f9fafb;
+  border-color: #f9fafb;
+}
+
+.bttn-wide {
+  border-radius: 6px;
+  background-color: #2fae60;
+  padding: 12px 20px;
+  color: white;
+  transition-duration: 75ms;
+}
+
+.bttn-wide:hover:enabled {
+  background-color: #2a9c56;
+}
+
+.bttn-wide:disabled {
+  border-radius: 6px;
+  background-color: #f3f4f6;
+  padding: 12px 20px;
+  color: #9ea5b0;
+  transition-duration: 75ms;
+  cursor: not-allowed;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+i {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f3f4f6;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c3c3c3;
+}
+.editor h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+.editor h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.editor h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.editor p {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.editor ol {
+  display: block;
+  list-style-type: decimal;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
+
+.editor ul {
+  display: block;
+  list-style-type: disc;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
+
+.editor a:link {
+  color: #0077ff;
+  text-decoration: underline;
+  cursor: auto;
+}
+
+.editor a:visited {
+  color: purple;
+  text-decoration: underline;
+  cursor: auto;
+}
+
+.editor a:link:active {
+  color: (internal value);
+}
+
+.editor a:visited:active {
+  color: (internal value);
+}
+
+dialog::backdrop {
+  background-color: #00000060;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 0px;
+}
+
+/* dialog:-internal-dialog-in-top-layer {
+  max-width: 100%;
+  max-height: 100%;
+} */
+
+.input-box {
+  width: 100%;
+  border-radius: 0.375rem;
+  background-color: #f9fafb;
+  border-width: 1px;
+  border-color: #f3f4f6;
+  outline: none;
+}
+
+.input-box:focus {
+  background-color: transparent;
+  border-color: #e5e7eb;
+}
+
+.input-box:hover {
+  background-color: transparent;
+  border-color: #e5e7eb;
+}
