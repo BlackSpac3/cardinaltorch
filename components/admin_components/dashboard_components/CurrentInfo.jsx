@@ -49,7 +49,7 @@ const CurrentInfo = async () => {
   return (
     <div>
       <div className="">
-        <h1 className="text-xl capitalize">{`Welcome, ${session?.user.first_name}`}</h1>
+        <h1 className="text-xl capitalize">{`Welcome, ${session?.user?.first_name}`}</h1>
         <p className="text-xs w-[60%] tab-s:w-full text-gray-500">
           Let's create awesome contents for your viewers
         </p>

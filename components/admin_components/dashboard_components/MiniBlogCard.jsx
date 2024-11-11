@@ -1,8 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
 
-const MiniBlogCard = ({ index, banner, title, desc, date }) => {
+const MiniBlogCard = ({ index, blog_id, banner, title, desc, date }) => {
   return (
-    <div key={index} className="flex gap-2 items-center cursor-pointer w-full">
+    <Link
+      href={`/blogs/${blog_id}`}
+      target="blank"
+      key={index}
+      className="flex gap-2 items-center cursor-pointer w-full"
+    >
       <div className="py-1 w-full">
         <h2 className="text-sm line-clamp-1 font-medium capitalize">{title}</h2>
         <p className=" line-clamp-3 text-xs text-gray-500 mt-1">{desc}</p>
@@ -16,7 +22,7 @@ const MiniBlogCard = ({ index, banner, title, desc, date }) => {
         height={0}
         sizes="100vw"
       />
-    </div>
+    </Link>
   );
 };
 

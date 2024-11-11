@@ -29,6 +29,7 @@ const RecentBlogs = async () => {
       return (
         <MiniBlogCard
           index={index}
+          blog_id={blog.blog_id}
           banner={blog.banner}
           title={blog.title}
           desc={blog.desc}
