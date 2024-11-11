@@ -28,6 +28,7 @@ export const verifyResetPassToken = async (token) => {
 
 export const getLatestUserData = async (email) => {
   try {
+    await connectDB();
     const user = await userModel
       .findOne({ "personal_info.email": email })
       .select(
