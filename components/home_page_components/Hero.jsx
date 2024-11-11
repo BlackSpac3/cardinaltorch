@@ -15,7 +15,7 @@ const Hero = () => {
             animate="visible"
             className="font-light text-lg phone:text-sm"
           >
-            Redefining Africa's Commodity Supply Chainz
+            Redefining Africa's Commodity Supply Chain
           </motion.p>
           <motion.h2
             variants={container(0.5)}
