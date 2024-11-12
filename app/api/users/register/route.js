@@ -149,6 +149,10 @@ export async function POST(request) {
       html,
     });
 
+    console.log("Logging info....");
+
+    console.log(info);
+
     return NextResponse.json(
       {
         success: true,
