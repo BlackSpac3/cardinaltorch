@@ -14,7 +14,10 @@ import { assets } from "@assets/assets";
 
 export const metadata = {
   title: "About",
+  description:
+    "Cardinal Torch is a leading player in the field of commodity trade such as agricultural products; and, in the innovation of efficient, sustainable energy.",
 };
+
 const page = () => {
   return (
     <section className="relative overflow-hidden">

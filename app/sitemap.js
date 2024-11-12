@@ -23,6 +23,9 @@ export default async function sitemap() {
     },
     ...blogEntries,
     {
+      url: `${process.env.NEXTAUTH_URL}/contact-us`,
+    },
+    {
       url: `${process.env.NEXTAUTH_URL}/services`,
     },
   ];

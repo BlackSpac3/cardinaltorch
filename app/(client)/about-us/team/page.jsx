@@ -6,6 +6,8 @@ import { assets } from "@assets/assets";
 
 export const metadata = {
   title: "Team",
+  description:
+    "David is an astute business professional with over twenty years of successful business experience in various sectors including commodity trading",
 };
 
 const page = () => {

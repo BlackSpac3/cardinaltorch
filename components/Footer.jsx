@@ -38,6 +38,7 @@ const Footer = () => {
 
     try {
       const response = await axios.post("/api/subscribe", { email });
+      document.getElementById("subsriber-footer-email-input-field").value = "";
       toast.dismiss(loadingToast);
       toast.success(response.data.message, {
         id: "newsletter-subscription-successfull",
