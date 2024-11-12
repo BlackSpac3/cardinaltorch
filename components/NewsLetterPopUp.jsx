@@ -70,13 +70,13 @@ const NewsLetterPopUp = () => {
   return (
     <dialog
       id="newsletter-popup"
-      className="mx-auto my-auto bg-newsletter bg-no-repeat bg-center w-[900px] tab-m:w-[700px] tab-s:w-[80%] h-[500px] rounded-xl 0 overflow-hidden"
+      className="mx-auto my-auto bg-newsletter bg-no-repeat bg-center w-[900px] tab-m:w-[700px] tab-s:w-[80%] phone:w-[90%] h-[500px] rounded-xl 0 overflow-hidden"
     >
       <Toaster />
       <div className="flex items-center justify-center w-full h-full">
         <form
           onSubmit={submit}
-          className="flex flex-col items-center gap-14 justify-center text-white w-[80%] tab-s:w-full  p-10 text-center"
+          className="flex flex-col items-center gap-14 phone:gap-7 justify-center text-white w-[80%] tab-s:w-full  p-10 text-center"
         >
           <h2 className="text-4xl tab-s:text-2xl leading-tight font-light">
             <span className="font-semibold underline underline-offset-4">
@@ -86,14 +86,14 @@ const NewsLetterPopUp = () => {
             Market Trends!
           </h2>
           <div className="w-full flex  flex-col items-center gap-5">
-            <div className="bg-white w-[80%] tab-s:w-full tab-s:text-sm text-black rounded-full p-1">
-              <div className="w-full flex bg-white rounded-full p-1">
+            <div className="bg-white w-[80%] tab-s:w-full tab-s:text-sm text-black rounded-full p-1 phone:p-0 phone:rounded-none phone:bg-transparent">
+              <div className="w-full flex phone:flex-col bg-white rounded-full p-1 phone:p-0 phone:rounded-none phone:bg-transparent phone:gap-2">
                 <input
                   id="subscriber-popup-email-input-field"
-                  // type="email"
+                  type="email"
                   name="email"
                   placeholder="Enter your email"
-                  className="w-full rounded-full outline-none px-5"
+                  className="w-full rounded-full outline-none px-5 phone:px-5 phone:py-3"
                 />
                 <button
                   type="submit"
