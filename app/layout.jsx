@@ -16,6 +16,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  verification: { google: "itqkWIEn5ul4jYd1RVKBGwmndRai0tygvGRmkQ_4OjI" },
 };
 
 const RootLayout = ({ children }) => {
