@@ -41,7 +41,7 @@ const Partners = () => {
               key={index}
               src={partner.icon}
               alt={partner.name}
-              className={`h-[40px] w-full`}
+              className={`h-[40px] w-[${partner.width}px]`}
             />
           </li>
         ))}
@@ -52,7 +52,7 @@ const Partners = () => {
                 key={index}
                 src={partner.icon}
                 alt={partner.name}
-                className={`h-[40px] w-full`}
+                className={`h-[40px] w-[${partner.width}px]`}
               />
             </li>
           ))}
