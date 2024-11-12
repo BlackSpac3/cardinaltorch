@@ -60,7 +60,7 @@ const Header = () => {
 
   return (
     <div
-      className={`${slides[slide].bg} ${slides[slide].text} px-[7vw] phone:px-4 rounded-2xl py-[4vw] transition-colors duration-500 mt-20`}
+      className={`${slides[slide].bg} ${slides[slide].text} px-[7vw] phone:px-4 rounded-2xl py-[4vw] transition-colors duration-500 mt-20 phone:mt-14`}
     >
       <div className="grid grid-cols-2 tab-m:grid-cols-1 w-full items-center gap-10">
         <div>

@@ -264,6 +264,7 @@ const Navbar = () => {
                   href={link.path}
                   onClick={() => {
                     setNavIsOpen(false);
+                    setAboutMenuIsOpen(true);
                   }}
                   className="text-[20px] py-2 w-full h-full"
                 >
@@ -290,27 +291,27 @@ const Navbar = () => {
                       : "gap-[10px] h-fit my-[10px]"
                   } flex flex-col w-full text-[18px] overflow-hidden duration-75`}
                 >
-                  <div className="py-3">
-                    <Link
-                      onClick={() => {
-                        setNavIsOpen(false);
-                      }}
-                      href="/about-us/team"
-                    >
-                      Our Team
-                    </Link>
-                  </div>
+                  <Link
+                    onClick={() => {
+                      setNavIsOpen(false);
+                      setAboutMenuIsOpen(true);
+                    }}
+                    href="/about-us/team"
+                    className="py-3"
+                  >
+                    Our Team
+                  </Link>
                   <hr />
-                  <div className="py-3">
-                    <Link
-                      onClick={() => {
-                        setNavIsOpen(false);
-                      }}
-                      href="/about-us/gallery"
-                    >
-                      Our Gallery
-                    </Link>
-                  </div>
+                  <Link
+                    onClick={() => {
+                      setNavIsOpen(false);
+                      setAboutMenuIsOpen(true);
+                    }}
+                    href="/about-us/gallery"
+                    className="py-3"
+                  >
+                    Our Gallery
+                  </Link>
                 </div>
               ) : (
                 <></>
