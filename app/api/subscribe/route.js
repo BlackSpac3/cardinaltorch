@@ -75,7 +75,7 @@ export async function POST(request) {
       },
     });
 
-    transporter.sendMail({
+    const infoMailData = {
       from: { name: "Cardinal Torch", address: process.env.MAIL_USER },
       to: "info@cardinaltorch.com",
       subject: "New Subscriber",
@@ -86,9 +86,9 @@ export async function POST(request) {
           content: csv,
         },
       ],
-    });
+    };
 
-    transporter.sendMail({
+    const subscriberMailData = {
       from: {
         name: "Cardinal Torch",
         address: process.env.MAIL_USER,
@@ -96,6 +96,30 @@ export async function POST(request) {
       to: email,
       subject: "Thanks For Subscribing",
       html: subscriberHtml,
+    };
+
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(infoMailData, (err, info) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          console.log(info);
+          resolve(info);
+        }
+      });
+    });
+
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(subscriberMailData, (err, info) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          console.log(info);
+          resolve(info);
+        }
+      });
     });
 
     return NextResponse.json(

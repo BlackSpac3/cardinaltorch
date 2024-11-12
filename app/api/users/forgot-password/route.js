@@ -86,12 +86,23 @@ export async function POST(request) {
         pass: process.env.MAIL_KEY,
       },
     });
-
-    const mailInfo = await transporter.sendMail({
+    const mailData = {
       from: { name: "Cardinal Torch", address: process.env.MAIL_USER },
       to: email,
       subject: "Cardinal Torch Password Change Request",
       html,
+    };
+
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(mailData, (err, info) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          console.log(info);
+          resolve(info);
+        }
+      });
     });
 
     return NextResponse.json(

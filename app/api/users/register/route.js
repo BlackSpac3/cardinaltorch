@@ -113,7 +113,7 @@ export async function POST(request) {
     <p>Password: ${password}</p>
     <br />
     <p>Please remember to update your password when you log in</p>
-    <a href="https://localhost:3000/login" target="_blank"
+    <a href="${process.env.NEXTAUTH_URL}/login" target="_blank"
       ><button
         style="
           cursor: pointer;
