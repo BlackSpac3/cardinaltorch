@@ -11,7 +11,7 @@ const WhatWeDo = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="border-b  p-4"
         >
           <h1 className="inline-flex gap-3 text-primary py-3">
@@ -44,7 +44,7 @@ const WhatWeDo = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           initial={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="border-b p-4"
         >
           <h1 className="text-primary inline-flex gap-3 py-3">
@@ -74,7 +74,7 @@ const WhatWeDo = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="tab:border-b p-4"
         >
           <h1 className="text-primary inline-flex gap-3 py-3">
@@ -104,7 +104,7 @@ const WhatWeDo = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           initial={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className=" p-4 font-['Montserrat']"
         >
           <h1 className=" text-primary inline-flex gap-5 py-3">

@@ -10,7 +10,7 @@ const Safety = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         initial={{ opacity: 0, x: -100 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
         className="flex flex-col gap-4 w-[90%]"
       >
         <h1 className="text-2xl text-primary">Health & Safety Measures</h1>
@@ -29,7 +29,7 @@ const Safety = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         initial={{ opacity: 0, x: 100 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
         className="flex flex-col gap-6"
       >
         <Image

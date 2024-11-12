@@ -5,7 +5,7 @@ import BlogCardSkeleton from "@components/skeletons/BlogCardSkeleton";
 const loading = () => {
   return (
     <section className="flex flex-col gap-[5vw] px-[7vw] py-[70px]">
-      <div className=" flex h-[40vw]  w-full rounded-xl overflow-hidden ">
+      <div className=" flex h-[40vw] tab:h-[50vw] phone:h-[40vh]  w-full rounded-xl overflow-hidden ">
         <div className="w-full h-full">
           <Skeleton width={"100%"} height={"100%"} />
         </div>

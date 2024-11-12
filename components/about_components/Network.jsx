@@ -11,7 +11,7 @@ const Network = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="w-[70%] phone:w-[100%]"
         >
           <div className="pb-3">
@@ -33,7 +33,7 @@ const Network = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="w-[80%] m-auto"
         >
           <div className=" grid grid-cols-2 phone:grid-cols-1  gap-5 tab:mt-12 ">

@@ -9,7 +9,7 @@ export const metadata = {
 const page = () => {
   return (
     <section className="relative w-full h-full overflow-hidden">
-      <div className="bg-white px-[10vw] py-[20px] flex flex-col gap-[5vw] w-full">
+      <div className="bg-white px-[10vw] py-[20px] flex flex-col gap-[5vw] phone:px-[7vw] w-full">
         <Header />
         <hr />
         <Product />

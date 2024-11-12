@@ -29,7 +29,7 @@ const page = async () => {
     <p>No Blogs</p>
   ) : (
     <section className="flex flex-col gap-[5vw] px-[7vw] py-[70px]">
-      <div className=" flex h-[40vw] tab:h-[50vw] phone:h-[70vh] rounded-xl  overflow-hidden ">
+      <div className=" flex h-[40vw] tab:h-[50vw] phone:h-[40vh] rounded-xl  overflow-hidden ">
         <FullImgBlogCard
           blog_id={blogs[0].blog_id}
           banner={blogs[0].banner}

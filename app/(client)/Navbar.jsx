@@ -247,14 +247,19 @@ const Navbar = () => {
           navIsOpen ? "right-0" : "right-[-100vw]"
         } hidden tab-s:block absolute bg-white h-[100vh] p-[20px] duration-[0.5s] w-[200px] z-50 top-0 shadow-[35px_0px_60px_-15px_rgba(0,0,0,70)]`}
       >
-        <i
-          onClick={() => setNavIsOpen(false)}
-          className="fi fi-rr-cross text-lg mt-2 mb-14"
-        ></i>
+        <div
+          onClick={() => {
+            setNavIsOpen(false);
+            setAboutMenuIsOpen(true);
+          }}
+          className="w-fit pr-3 py-3 aspect-square mt-2 mb-14 rounded-md active:scale-90"
+        >
+          <i className="fi fi-rr-cross text-lg "></i>
+        </div>
         <ul className="flex flex-col gap-[10px]">
           {navlinks.map((link, index) => (
             <div key={index}>
-              <div className="flex justify-between items-center ">
+              <div className="flex justify-between ">
                 <Link
                   href={link.path}
                   onClick={() => {
@@ -265,14 +270,10 @@ const Navbar = () => {
                   {link.name}
                 </Link>
                 <div
-                  onClick={
-                    aboutMenuIsOpen
-                      ? () => setAboutMenuIsOpen(false)
-                      : () => setAboutMenuIsOpen(true)
-                  }
+                  onClick={() => setAboutMenuIsOpen((prev) => !prev)}
                   className={`${
                     link.path === "/about-us" ? "block" : "hidden"
-                  } mr-2`}
+                  } mr-2 hover:bg-gray-50 px-3 rounded-md flex items-center justify-center`}
                 >
                   <i
                     className={`fi fi-rr-angle-down ${
@@ -289,7 +290,7 @@ const Navbar = () => {
                       : "gap-[10px] h-fit my-[10px]"
                   } flex flex-col w-full text-[18px] overflow-hidden duration-75`}
                 >
-                  <div className="py-2">
+                  <div className="py-3">
                     <Link
                       onClick={() => {
                         setNavIsOpen(false);
@@ -300,7 +301,7 @@ const Navbar = () => {
                     </Link>
                   </div>
                   <hr />
-                  <div className="py-2">
+                  <div className="py-3">
                     <Link
                       onClick={() => {
                         setNavIsOpen(false);

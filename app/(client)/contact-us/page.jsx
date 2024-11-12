@@ -30,7 +30,7 @@ const page = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             initial={{ opacity: 0, x: 100 }}
-            transition={{ duration: 0.5, delay: 1 }}
+            transition={{ duration: 0.5, delay: 0 }}
             className="text-5xl font-medium"
           >
             Contact Us
@@ -39,7 +39,7 @@ const page = () => {
             viewport={{ once: true }}
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, delay: 1 }}
+            transition={{ duration: 0.5, delay: 0 }}
             className="body-text mt-5"
           >
             We'd love to hear from you! Please feel free to get in touch if you

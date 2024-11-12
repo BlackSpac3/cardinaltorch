@@ -15,7 +15,7 @@ const Header = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         initial={{ opacity: 0, x: 100 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        transition={{ duration: 0.5, delay: 0 }}
         className="text-6xl font-medium mt-2"
       >
         Gallery
@@ -24,7 +24,7 @@ const Header = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         initial={{ opacity: 0, x: -100 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        transition={{ duration: 0.5, delay: 0 }}
         className="body-text mt-5"
       >
         Welcome to our Gallery! Browse through a collection of our favorite

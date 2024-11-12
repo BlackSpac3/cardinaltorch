@@ -5,10 +5,10 @@ import Image from "next/image";
 
 const Partners = () => {
   const partners = [
-    { name: "Agroforce", icon: assets.agroforce_icon },
-    { name: "ETG", icon: assets.ETG_icon },
-    { name: "Olam Agri", icon: assets.olam_agri_icon },
-    { name: "Sucden", icon: assets.sucden_icon },
+    { name: "Agroforce", icon: assets.agroforce_icon, width: 280.55 },
+    { name: "ETG", icon: assets.ETG_icon, width: 84.98 },
+    { name: "Olam Agri", icon: assets.olam_agri_icon, width: 175.04 },
+    { name: "Sucden", icon: assets.sucden_icon, width: 140.27 },
   ];
 
   const [innerWidth, setInnerWidth] = useState(0);
@@ -33,26 +33,30 @@ const Partners = () => {
   }, []);
 
   return (
-    <div className="relative w-fit tab:w-full overflow-hidden flex items-center opacity-40 flex-shrink  mx-auto phone:mb-20 partners">
-      <div className="partners-carousel flex items-center flex-nowrap whitespace-nowrap gap-14">
+    <div className="w-fit tab:w-full overflow-hidden flex items-center opacity-40   mx-auto phone:mb-20 partners">
+      <ul className="partners-carousel flex items-center flex-nowrap  gap-14 whitespace-nowrap flex-shrink-0">
         {partners.map((partner, index) => (
-          <Image
-            key={index}
-            src={partner.icon}
-            alt={partner.name}
-            className="h-10 w-auto"
-          />
-        ))}
-        {innerWidth < 1080 &&
-          partners.map((partner, index) => (
+          <li className={`h-[40px] w-[${partner.width}px]`}>
             <Image
               key={index}
               src={partner.icon}
               alt={partner.name}
-              className="h-10 w-auto"
+              className={`h-[40px] w-full`}
             />
+          </li>
+        ))}
+        {innerWidth < 1024 &&
+          partners.map((partner, index) => (
+            <li className={`h-[40px] w-[${partner.width}px]`}>
+              <Image
+                key={index}
+                src={partner.icon}
+                alt={partner.name}
+                className={`h-[40px] w-full`}
+              />
+            </li>
           ))}
-      </div>
+      </ul>
     </div>
   );
 };

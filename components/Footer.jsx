@@ -4,6 +4,9 @@ import { assets } from "@assets/assets";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { emailRegex } from "@utils";
+import toast from "react-hot-toast";
+import axios from "axios";
 const Footer = () => {
   const pathname = usePathname();
   const [home, setHome] = useState(true);
@@ -13,29 +16,76 @@ const Footer = () => {
     }
     setHome(false);
   });
+
+  const subscribe = async (e) => {
+    e.preventDefault();
+    e.target.disabled = true;
+
+    const email = document.getElementById(
+      "subsriber-footer-email-input-field"
+    ).value;
+
+    if (!email || !emailRegex.test(email)) {
+      e.target.disabled = false;
+      return toast.error("Enter a valid email adddress", {
+        id: "subscriber-invalid-email-error",
+      });
+    }
+
+    const loadingToast = toast.loading("Subscribing...", {
+      id: "subscribing-to-news-letter-process",
+    });
+
+    try {
+      const response = await axios.post("/api/subscribe", { email });
+      toast.dismiss(loadingToast);
+      toast.success(response.data.message, {
+        id: "newsletter-subscription-successfull",
+      });
+    } catch (error) {
+      toast.dismiss(loadingToast);
+      if (error.response.data.message) {
+        return toast.error(error.response.data.message, {
+          id: "newsletter-subscription-error",
+        });
+      }
+      return toast.error("Error connecting to server", {
+        id: "newsletter-subscription-error",
+      });
+    } finally {
+      e.target.disabled = false;
+    }
+  };
   return (
     <div
       className={`${
         home && "bg-gray-50"
       } flex flex-col items-center w-full font-light`}
     >
-      <footer className="flex flex-col bg-[#4f8c66] px-[10vw] pb-10 pt-14 text-white gap-10 w-full items-center z-0 text-sm">
-        <div className="w-[60%] tab-s:w-[80%] phone:w-full">
-          <h2 className="text-4xl font-medium text-center">
-            Fear of misssing out?
+      <footer className="flex flex-col bg-[#4f8c66] px-[10vw] phone:px-[7vw] pb-10 pt-14 text-white gap-10 w-full items-center z-0 text-sm">
+        <div className="w-[60%] tab-s:w-[80%] phone:w-full text-center phone:text-left">
+          <h2 className="text-3xl tab-s:text-2xl font-medium ">
+            Subscribe to our newsletter
           </h2>
-          <p className="text-center mt-1">
+          <p className="mt-1">
             Be the first to know about our current deals and market trends,
-            subscribe to our news letter to stay updated
+            subscribe to stay updated
           </p>
 
           <div className="flex mt-5">
             <input
-              type="text"
+              type="email"
+              name="email"
+              id="subsriber-footer-email-input-field"
               placeholder="Enter email here"
               className="p-3 w-full text-black outline-none"
             />
-            <button className="bg-gray-900 px-5 py-3">Subscribe</button>
+            <button
+              onClick={subscribe}
+              className="bg-gray-900 px-5 py-3 disabled:bg-gray-100 disabled:text-[#9ea5b0] duration-75"
+            >
+              Subscribe
+            </button>
           </div>
         </div>
         <div

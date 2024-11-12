@@ -5,6 +5,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import NoDataMessage from "@components/admin_components/NoDataMessage.jsx";
+import TeamCardSkeleton from "@components/skeletons/TeamCardSkeleton.jsx";
 
 const Board = () => {
   const [boardMembers, setBoardMembers] = useState(null);
@@ -27,28 +28,24 @@ const Board = () => {
   return (
     <section className="">
       {!boardMembers ? (
-        <p>Loading...</p>
+        <div className="grid grid-cols-auto-fill-280 gap-7">
+          <TeamCardSkeleton cards={5} />
+        </div>
       ) : !boardMembers.length ? (
         <NoDataMessage message={"No Board of Directors yet"} />
       ) : (
         <div className="flex flex-col items-center gap-10">
-          <div className="grid grid-cols-4 phone:grid-cols-1 gap-7">
+          <div className="grid grid-cols-auto-fill-280 gap-7">
             {boardMembers.map((member, index) => {
               return (
-                <motion.div
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  initial={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                  key={index}
-                >
+                <div key={index}>
                   <TeamMemberCard
                     img={member.img}
                     name={member.name}
                     job_title={member.role}
                     desc={member.desc}
                   />
-                </motion.div>
+                </div>
               );
             })}
           </div>

@@ -8,7 +8,7 @@ const Overview = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         initial={{ opacity: 0, y: 100 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
         className="section-big-text phone:text-2xl"
       >
         We leverage ethical local collaborations to meet the increasing demand
@@ -19,7 +19,7 @@ const Overview = () => {
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 100 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
         className="body-text "
       >
         <span className=" font-semibold text-primary">

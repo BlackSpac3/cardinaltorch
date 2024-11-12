@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import NoDataMessage from "@components/admin_components/NoDataMessage";
 import Image from "next/image";
 import { assets } from "@assets/assets";
+import TeamCardSkeleton from "@components/skeletons/TeamCardSkeleton";
 
 const Management = () => {
   const [management, setManagement] = useState(null);
@@ -27,26 +28,22 @@ const Management = () => {
   return (
     <section className="relative">
       {!management ? (
-        <p>Loading... </p>
+        <div className="grid grid-cols-auto-fill-280 gap-7 h-full">
+          <TeamCardSkeleton cards={5} />
+        </div>
       ) : !management.length ? (
         <NoDataMessage message={"No Management Team Member yet"} />
       ) : (
-        <div className="grid grid-cols-4 phone:grid-cols-1 gap-7 h-full">
+        <div className="grid grid-cols-auto-fill-280 gap-7 h-full">
           {management.map((member, index) => (
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              initial={{ opacity: 0, x: 100 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              key={index}
-            >
+            <div key={index}>
               <TeamMemberCard
                 img={member.img}
                 name={member.name}
                 job_title={member.role}
                 desc={member.desc}
               />
-            </motion.div>
+            </div>
           ))}
         </div>
       )}

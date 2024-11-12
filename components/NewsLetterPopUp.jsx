@@ -4,37 +4,50 @@ import { setCookie, getCookie } from "@utils";
 import axios from "axios";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { emailRegex } from "@utils";
 
 const NewsLetterPopUp = () => {
-  const emailRegex =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
   const submit = async (e) => {
     e.preventDefault();
+    e.target.disabled = true;
 
     const email = document.getElementById(
       "subscriber-popup-email-input-field"
     ).value;
 
     if (!email || !emailRegex.test(email)) {
-      return alert("Enter a valid email adddress");
+      e.target.disabled = false;
+      return toast.error("Enter a valid email adddress", {
+        id: "subscriber-invalid-email-error",
+      });
     }
+
     const loadingToast = toast.loading("Subscribing...", {
       id: "subscribing-to-news-letter-process",
     });
     try {
-      const response = await axios.post(`/api/subscribe`, { email });
+      const response = await axios.post("/api/subscribe", { email });
       toast.dismiss(loadingToast);
-      toast.success("You have successfully subscribed to our newsletter", {
+      toast.success(response.data.message, {
         id: "newsletter-subscription-successfull",
       });
-      setCookie("nl", "closed", 1);
-      document.getElementById("newsletter-popup").close();
+
+      setTimeout(() => {
+        setCookie("nl", "closed", 1);
+        document.getElementById("newsletter-popup").close();
+      }, 500);
     } catch (error) {
       toast.dismiss(loadingToast);
-      toast.error("Something went wrong somewhere", {
+      if (error.response.data.message) {
+        return toast.error(error.response.data.message, {
+          id: "newsletter-subscription-error",
+        });
+      }
+      return toast.error("Error connecting to server", {
         id: "newsletter-subscription-error",
       });
+    } finally {
+      e.target.disabled = false;
     }
   };
 
@@ -74,10 +87,7 @@ const NewsLetterPopUp = () => {
     >
       <Toaster />
       <div className="flex items-center justify-center w-full h-full">
-        <form
-          onSubmit={submit}
-          className="flex flex-col items-center gap-14 phone:gap-7 justify-center text-white w-[80%] tab-s:w-full  p-10 text-center"
-        >
+        <div className="flex flex-col items-center gap-14 phone:gap-7 justify-center text-white w-[80%] tab-s:w-full  p-10 text-center">
           <h2 className="text-4xl tab-s:text-2xl leading-tight font-light">
             <span className="font-semibold underline underline-offset-4">
               Stay Informed:
@@ -96,8 +106,9 @@ const NewsLetterPopUp = () => {
                   className="w-full rounded-full outline-none px-5 phone:px-5 phone:py-3"
                 />
                 <button
-                  type="submit"
-                  className="bg-primary px-10 py-3 rounded-full min-w-fit text-white"
+                  type="button"
+                  onClick={submit}
+                  className="bg-primary px-10 py-3 rounded-full min-w-fit text-white disabled:bg-gray-100 disabled:cursor-not-allowed disabled:text-[#9ea5b0] duration-75"
                 >
                   Subscribe
                 </button>
@@ -110,7 +121,7 @@ const NewsLetterPopUp = () => {
               Cancel
             </p>
           </div>
-        </form>
+        </div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#00000080] to-transparent z-[-1]"></div>
       </div>
     </dialog>
