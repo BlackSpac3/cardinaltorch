@@ -57,17 +57,22 @@ const Partners = () => {
               key={index}
               src={partner.icon}
               alt={partner.name}
+              title={partner.name}
               className={`min-h-[40px] h-[40px] ${partner.width} object-scale-down`}
             />
           </li>
         ))}
         {innerWidth < 1024 &&
           partners.map((partner, index) => (
-            <li className={`min-h-[40px] h-[40px] ${partner.width}`}>
+            <li
+              aria-hidden
+              className={`min-h-[40px] h-[40px] ${partner.width}`}
+            >
               <Image
                 key={index}
                 src={partner.icon}
                 alt={partner.name}
+                title={partner.name}
                 className={`min-h-[40px] h-[40px] ${partner.width} object-scale-down`}
               />
             </li>

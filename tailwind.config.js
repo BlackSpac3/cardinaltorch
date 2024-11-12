@@ -11,9 +11,8 @@ module.exports = {
         sans: ["Roboto", "Montserrat"],
       },
       backgroundImage: {
-        about: "url('/aboutimg.jpg')",
-        header: "url('/header_img.png')",
-        newsletter: "url('/newsletter_bg.jpg')",
+        about: "url('/1731426607810.jpg')",
+        newsletter: "url('/1731427383407.jpg')",
       },
       gridTemplateColumns: {
         "auto-fill-280": "repeat(auto-fill, minmax(280px, 1fr))",

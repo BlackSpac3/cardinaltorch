@@ -72,13 +72,14 @@ const Footer = () => {
             subscribe to stay updated
           </p>
 
-          <div className="flex mt-5">
+          <div className="flex mt-5 bg-white">
             <input
               type="email"
               name="email"
+              required
               id="subsriber-footer-email-input-field"
               placeholder="Enter email here"
-              className="p-3 w-full text-black outline-none"
+              className="p-3 w-full text-black outline-none rounded-none"
             />
             <button
               onClick={subscribe}

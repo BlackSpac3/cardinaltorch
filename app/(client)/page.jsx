@@ -25,24 +25,18 @@ const page = () => {
 
         <div className="slide-wrapper flex w-full flex-shrink-0">
           <Image
-            width={0}
-            height={0}
-            sizes="100vw"
-            src="/hero1.jpg"
+            src={assets.hero_img_1}
+            priority
             className="min-w-full   h-screen object-cover overflow-hidden  object-center select-none "
           />
           <Image
-            width={0}
-            height={0}
-            sizes="100vw"
-            src="/hero2.jpg"
+            src={assets.hero_img_2}
+            priority
             className="min-w-full   h-screen object-cover overflow-hidden  object-center select-none "
           />
           <Image
-            width={0}
-            height={0}
-            sizes="100vw"
-            src="/hero3.jpg"
+            src={assets.hero_img_3}
+            priority
             className="min-w-full   h-screen object-cover overflow-hidden  object-center select-none "
           />
         </div>

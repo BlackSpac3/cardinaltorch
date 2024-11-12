@@ -1,34 +1,36 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { assets } from "@assets/assets";
+import Image from "next/image";
 
 const slides = [
   {
-    img: "/pro1.png",
+    img: assets.product1,
     bg: "bg-[#ff6868]",
     text: "text-[#ffffff]",
     dots: "bg-[#ffffff]",
   },
   {
-    img: "/pro2.png",
+    img: assets.product2,
     bg: "bg-[#e5cba2]",
     text: "text-[#000000]",
     dots: "bg-[#000000]",
   },
   {
-    img: "/pro3.png",
+    img: assets.product3,
     bg: "bg-[#ffde7a]",
     text: "text-[#ffffff]",
     dots: "bg-[#ffffff]",
   },
   {
-    img: "/pro4.png",
+    img: assets.product4,
     bg: "bg-[#e5bb43]",
     text: "text-[#000000]",
     dots: "bg-[#000000]",
   },
   {
-    img: "/pro5.png",
+    img: assets.product5,
     bg: "bg-gray-50",
     text: "text-[#000000]",
     dots: "bg-[#000000]",
@@ -98,11 +100,11 @@ const Header = () => {
               <i className="fi fi-sr-angle-left text-2xl opacity-75"></i>
             </div>
 
-            <img
+            <Image
               src={slides[slide].img}
-              alt="Slide"
+              alt="Ready to eat Cashew Nuts"
               ref={imgRef}
-              className="h-[260px] w-[260px] object-contain rounded-md"
+              className="h-[260px] w-[260px] object-contain rounded-md select-none"
             />
 
             <div

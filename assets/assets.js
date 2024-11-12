@@ -2,6 +2,10 @@ import logo_black from "./logo_black.png";
 import logo_white from "./logo_white.png";
 import vission_mission_pic from "./vission_mission_pic.jpg";
 
+import hero_img_1 from "./1731426153054.jpg";
+import hero_img_2 from "./1731426292460.jpg";
+import hero_img_3 from "./1731426421253.jpg";
+
 import page404_image from "./404page_image.png";
 import sesame_bg_illustration from "./sesame_bg_illustration.png";
 import creating_data_illustration from "./creating_data_illustration.png";
@@ -33,41 +37,56 @@ import cashews_img from "./cashews_img.jpg";
 import login_banner from "./login_banner.jpg";
 import coffee_img from "./coffee_img.avif";
 
-export const url = " http://localhost:3000";
+import product1 from "./pro1.png";
+import product2 from "./pro2.png";
+import product3 from "./pro3.png";
+import product4 from "./pro4.png";
+import product5 from "./pro5.png";
+
+export const url = " http://cardinaltorch.com";
 
 export const assets = {
-  logo_black,
-  logo_white,
+  agroforce_icon,
+  bean_bg_illustration,
+  cardinal_energies_logo,
   cashews_img,
-  login_banner,
+  cocoa_bg_illustration,
   cocoa_img,
   coffee_img,
-  page404_image,
-  bean_bg_illustration,
-  cocoa_bg_illustration,
-  maize_bg_illustration,
-  sesame_img,
-  cooperative_img,
-  soya_img,
-  creating_data_illustration,
-  mission_icon,
-  vision_icon,
-  vission_mission_pic,
-  sourcing_icon,
   commodity_processing_icon,
+  cooperative_img,
   corporate_resources_icon,
-  logistics_icon,
-  agroforce_icon,
-  olam_agri_icon,
+  creating_data_illustration,
   ETG_icon,
+  health_safety_illustration,
+  hero_img_1,
+  hero_img_2,
+  hero_img_3,
+  instagram_icon,
+  linkedin_icon,
+  login_banner,
+  logistics_icon,
+  logo_black,
+  logo_white,
+  maize_bg_illustration,
+  mission_icon,
+  olam_agri_icon,
+  page404_image,
+  product1,
+  product2,
+  product3,
+  product4,
+  product5,
+  quality_illustration,
+  sesame_bg_illustration,
+  sesame_img,
+  sourcing_icon,
+  soya_img,
   sucden_icon,
   twitter_icon,
-  linkedin_icon,
-  instagram_icon,
-  quality_illustration,
-  health_safety_illustration,
-  cardinal_energies_logo,
-  sesame_bg_illustration,
+  vision_icon,
+  vission_mission_pic,
+
   default_profile_img:
     "https://utfs.io/f/7wGKpe9yAmvsyZSYh6xikucFQWzwOeSRqNth9YvdAK53b84V",
 };
