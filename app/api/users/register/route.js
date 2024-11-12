@@ -142,16 +142,24 @@ export async function POST(request) {
       },
     });
 
-    const info = await transporter.sendMail({
+    const mailData = {
       from: { name: "Cardinal Torch", address: process.env.MAIL_USER },
       to: email,
       subject: "Welcome To Cardinal Torch Content Management Team",
       html,
+    };
+
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(mailData, (err, info) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          console.log(info);
+          resolve(info);
+        }
+      });
     });
-
-    console.log("Logging info....");
-
-    console.log(info);
 
     return NextResponse.json(
       {
