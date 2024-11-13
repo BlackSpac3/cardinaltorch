@@ -5,19 +5,23 @@ import { NextResponse } from "next/server";
 import { UTApi } from "uploadthing/server";
 
 export async function POST(request) {
+  // confirm session
   const user = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
   });
 
   if (!user) {
+    console.log("User not in session");
     return NextResponse.json(
       { success: false, message: "Access Denied" },
       { status: 401 }
     );
   }
 
+  //confirm admin access
   if (user.user_type != "admin") {
+    console.log("Unauthorized User Access");
     return NextResponse.json(
       { success: false, message: "Access Denied" },
       { status: 401 }
@@ -76,7 +80,12 @@ export async function POST(request) {
   }
 
   try {
+    await connectDB();
+    const utapi = new UTApi();
     if (!id) {
+      //creating new employee
+      console.log("creating new employee...");
+
       if (!img || typeof img !== "object") {
         return NextResponse.json(
           { success: false, message: "Please give employee an Image" },
@@ -84,11 +93,17 @@ export async function POST(request) {
         );
       }
 
-      const utapi = new UTApi();
+      //uploading employee image
+      console.log("uploading employee image...");
+
       const utRes = await utapi.uploadFiles([img]);
+
+      console.log("image uploaded");
+      //assigning image data
       img = utRes[0].data.url;
       const key = utRes[0].data.key;
 
+      //saving employee
       const employee = new employeeModel({
         img,
         img_key: key,
@@ -98,31 +113,48 @@ export async function POST(request) {
         dept,
       });
 
-      await connectDB();
-
       await employee.save();
+
+      console.log("employee created!");
 
       return NextResponse.json(
         { success: true, message: `${name} Added` },
         { status: 200 }
       );
     } else {
+      //updating employee data
+      console.log("updating employee data");
+
+      let updateObject = {};
+
       if (typeof img === "object") {
-        const utapi = new UTApi();
+        //deleting previous emplpoyee image
+        console.log("retriebing previous employee image");
+
+        const data = await employeeModel.findById(id);
+        const prev_key = data.img_key;
+
+        console.log("deleting previous employee image");
+        await utapi.deleteFiles([prev_key]);
+
+        //uploading new employee image
+        console.log("uploading new employee image");
+
         const utRes = await utapi.uploadFiles([img]);
+
+        //assingning new image data
         img = utRes[0].data.url;
+        const key = utRes[0].data.key;
+
+        updateObject = { img, img_key: key, name, role, desc, dept };
+      } else {
+        updateObject = { img, name, role, desc, dept };
       }
 
-      await employeeModel.findOneAndUpdate(
-        { _id: id },
-        {
-          img,
-          name,
-          role,
-          desc,
-          dept,
-        }
-      );
+      //updating employee
+      console.log("updating employee");
+
+      await employeeModel.findByIdAndUpdate(id, updateObject);
 
       return NextResponse.json(
         { success: true, message: `${name} Updated` },

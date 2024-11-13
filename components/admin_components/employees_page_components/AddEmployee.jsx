@@ -247,7 +247,7 @@ const AddEmployee = ({ employeesPage, setEmployeesPage }) => {
       </section>
     </section>
   ) : (
-    <section className="flex flex-col w-full overflow-hidden">
+    <section className="flex flex-col w-full h-full overflow-hidden">
       <nav className="w-full px-[3vw] duration-200">
         <div className="flex justify-between items-center py-2 border-b duration-200">
           <div className="flex items-center gap-2 duration-200 ">
