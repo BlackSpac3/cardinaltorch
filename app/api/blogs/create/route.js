@@ -192,8 +192,8 @@ export async function POST(request) {
         await activity.save();
       }
 
-      revalidatePath(`/blogs/${blog_id}`, "page");
-      revalidatePath("/blogs", "page");
+      revalidatePath("/blogs/[blog_id]", "page");
+      revalidatePath("/blogs");
 
       return NextResponse.json(
         { success: true, message: blog.draft ? "Draft Saved" : "Published" },
