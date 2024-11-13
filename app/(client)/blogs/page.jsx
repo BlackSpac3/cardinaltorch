@@ -2,8 +2,9 @@ import BlogsGrid from "@components/blog_components/BlogsGrid";
 import FeaturedBlogs from "@components/blog_components/FeaturedBlogs";
 import FullImgBlogCard from "@components/blog_components/FullImgBlogCard";
 import axios from "axios";
+import { notFound } from "next/navigation";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 export const metadata = {
   title: "Blogs",
@@ -28,7 +29,7 @@ const page = async () => {
   const blogs = await fetchBlogs();
 
   return !blogs?.length ? (
-    <p>No Blogs</p>
+    notFound()
   ) : (
     <section className="flex flex-col gap-[5vw] px-[7vw] py-[70px]">
       <div className=" flex h-[40vw] tab:h-[50vw] phone:h-[40vh] rounded-xl  overflow-hidden ">

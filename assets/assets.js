@@ -23,6 +23,8 @@ import sucden_icon from "./sucden_icon.png";
 import twitter_icon from "./twitter_icon.png";
 import linkedin_icon from "./linkedin_icon.png";
 import instagram_icon from "./instagram_icon.png";
+
+import blog_not_found_illustration from "./blog_not_found_illustration.png";
 import quality_illustration from "./quality_illustration.png";
 import cardinal_energies_logo from "./cardinal_energies_logo.png";
 import cooperative_img from "./cooperative_img.png";
@@ -48,6 +50,7 @@ export const url = " http://cardinaltorch.com";
 export const assets = {
   agroforce_icon,
   bean_bg_illustration,
+  blog_not_found_illustration,
   cardinal_energies_logo,
   cashews_img,
   cocoa_bg_illustration,

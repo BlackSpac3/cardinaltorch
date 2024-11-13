@@ -14,7 +14,11 @@ const NotFound = () => {
         </Link>
       </nav>
       <div className="m-body tab-s:flex-col flex gap-20 tab-s:gap-10 items-center justify-center  mx-auto">
-        <Image src={assets.page404_image} alt="" className="w-[400px]" />
+        <Image
+          src={assets.page404_image}
+          alt=""
+          className="w-[400px] select-none"
+        />
         <div className="flex flex-col items-center text-center">
           <h1 className="section-big-text">Oops!</h1>
           <p className="text-gray-500 mt-5">

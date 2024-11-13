@@ -1,6 +1,5 @@
 import { assets } from "@assets/assets";
 import Image from "next/image";
-import Link from "next/link";
 
 const NotFound = () => {
   return (
@@ -11,18 +10,13 @@ const NotFound = () => {
           className="w-[420px] h-auto select-none"
         />
         <div className="flex flex-col items-center text-center">
-          <p className="section-big-text">No Blog Found!</p>
+          <p className="section-big-text">No Blogs Yet 😔</p>
           <p className="text-gray-500 mt-5">
-            The blog you're searching for may have been deleted or doesn't
-            exist. Please check the URL or explore our latest posts.
+            Thank you for your patience! Our blog is coming soon. Our team is
+            currently working hard to curate the best and most relevant content
+            for you, ensuring that what we share meets your expectations. Stay
+            tuned for exciting updates!
           </p>
-          <Link
-            href="/blogs"
-            className="px-5 py-3 flex items-center rounded-full gap-2 bg-primary hover:bg-secondary text-white  mt-10 duration-75"
-          >
-            <p className="leading-none">Latest blogs</p>
-            <i className="fi fi-rr-arrow-right"></i>
-          </Link>
         </div>
       </div>
     </div>
