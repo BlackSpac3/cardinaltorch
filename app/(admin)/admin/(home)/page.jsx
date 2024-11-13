@@ -4,6 +4,8 @@ import RecentActivities from "@components/admin_components/dashboard_components/
 import RecentBlogs from "@components/admin_components/dashboard_components/RecentBlogs";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 const Dashboard = async () => {
   return (
     <section className="flex flex-col w-full h-full overflow-hidden tab-m:overflow-scroll tab-m:h-fit ">
