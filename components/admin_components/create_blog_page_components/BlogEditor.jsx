@@ -12,6 +12,7 @@ import { blogImages } from "@utils";
 import ConfirmDelDialog from "../ConfirmDelDialog";
 import { useSession } from "next-auth/react";
 import AddImgDropZone from "@components/AddImgDropZone";
+import compressImg from "@utils/compressImg";
 
 const BlogEditor = ({ blog_id }) => {
   const route = useRouter();
@@ -68,12 +69,18 @@ const BlogEditor = ({ blog_id }) => {
     }
 
     if (textEditor.isReady) {
+      const loadingToast = toast.loading("Saving Draft...");
+      const formData = new FormData();
+      blog_id && formData.append("id", blog_id);
+
       textEditor.save().then(async (data) => {
-        const formData = new FormData();
+        if (typeof banner === "object") {
+          const compressedImage = await compressImg(banner);
+          formData.append("banner", compressedImage, compressedImage.name);
+        } else {
+          formData.append("banner", banner);
+        }
 
-        blog_id && formData.append("id", blog_id);
-
-        formData.append("banner", banner);
         formData.append("title", title);
         formData.append("desc", desc);
         formData.append("tags", JSON.stringify(tags));
@@ -83,8 +90,6 @@ const BlogEditor = ({ blog_id }) => {
         blogImages.map((imgData, index) => {
           formData.append(imgData.id, imgData.file, imgData.file.name);
         });
-
-        const loadingToast = toast.loading("Saving Draft...");
 
         try {
           const res = await axios.post("/api/blogs/create", formData);

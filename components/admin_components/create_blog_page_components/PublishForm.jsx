@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { blogImages } from "@utils";
+import compressImg from "@utils/compressImg";
 
 const PublishForm = ({ blog_id }) => {
   const characterLimit = 200;
@@ -87,11 +88,19 @@ const PublishForm = ({ blog_id }) => {
         id: "publish-form-no-tag-error",
       });
     }
+    const loadingToast = toast.loading("Publishing...");
 
     const formData = new FormData();
 
     blog_id && formData.append("id", blog_id);
-    formData.append("banner", banner);
+
+    if (typeof banner === "object") {
+      const compressedImage = await compressImg(banner);
+      formData.append("banner", compressedImage, compressedImage.name);
+    } else {
+      formData.append("banner", banner);
+    }
+
     formData.append("title", title);
     formData.append("desc", desc);
     formData.append("tags", JSON.stringify(tags));
@@ -101,8 +110,6 @@ const PublishForm = ({ blog_id }) => {
     blogImages.map((imgData, index) => {
       formData.append(imgData.id, imgData.file, imgData.file.name);
     });
-
-    const loadingToast = toast.loading("Publishing...");
 
     try {
       const res = await axios.post("/api/blogs/create", formData);
@@ -135,7 +142,7 @@ const PublishForm = ({ blog_id }) => {
       </nav>
 
       <section className="overflow-y-scroll">
-        <div className="grid grid-cols-2 gap-5 w-[90%] mx-auto py-5 ">
+        <div className="grid grid-cols-2 tab-s:grid-cols-1 gap-5 w-[90%] mx-auto py-5 ">
           <div className="w-full">
             <div className="relative w-full aspect-video overflow-hidden rounded-md">
               {tags.length != 0 && (

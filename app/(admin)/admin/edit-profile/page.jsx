@@ -1,11 +1,13 @@
 "use client";
 import { assets } from "@assets/assets";
+import compressImg from "@utils/compressImg";
 import axios from "axios";
 import Compressor from "compressorjs";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState, useRef } from "react";
 import toast from "react-hot-toast";
+import { log } from "util";
 
 const page = () => {
   const { data: session, update } = useSession();
@@ -57,25 +59,15 @@ const page = () => {
       return toast.error(`Bio should not be more than ${bioLimit} characters`);
     }
 
+    const loadingToast = toast.loading("Updating...");
+
     if (!profileImgPreview) {
       formData.append("profile_img", profile_img);
     } else {
-      const compressedImg = await new Promise((resolve, reject) => {
-        new Compressor(profileImgPreview, {
-          quality: 0.6,
-          mimeType: "image/webp",
-          success(result) {
-            resolve(result);
-          },
-          error(error) {
-            reject(error);
-          },
-        });
-      });
-      formData.append("profile_img", compressedImg, compressedImg.name);
+      const compressedImage = await compressImg(profileImgPreview);
+      formData.append("profile_img", compressedImage, compressedImage.name);
     }
 
-    const loadingToast = toast.loading("Updating...");
     try {
       const response = await axios.post("/api/users/update", formData);
       updateSession(response);

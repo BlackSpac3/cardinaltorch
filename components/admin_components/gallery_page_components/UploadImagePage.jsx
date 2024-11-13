@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import AddImgDropZone from "@components/AddImgDropZone";
+import compressImg from "@utils/compressImg";
 
 const UploadImagePage = ({ setState }) => {
   const characterLimit = 150;
@@ -46,7 +47,6 @@ const UploadImagePage = ({ setState }) => {
   const uploadImage = async (e) => {
     e.preventDefault();
     submitBttnRef.current.disabled = true;
-    let formData = new FormData();
 
     if (!image) {
       return toast.error("Please select an image to upload", {
@@ -60,10 +60,18 @@ const UploadImagePage = ({ setState }) => {
       });
     }
 
-    formData.append("image", image);
+    const loadingToast = toast.loading("Uploading...");
+    let formData = new FormData();
+
+    if (typeof image === "object") {
+      const compressedImage = await compressImg(image);
+      formData.append("image", compressedImage, compressedImage.name);
+    } else {
+      return toast.error("Invalid Image");
+    }
+
     formData.append("desc", desc);
 
-    const loadingToast = toast.loading("Uploading...");
     try {
       const res = await axios.post(`/api/images/upload`, formData);
       toast.dismiss(loadingToast);

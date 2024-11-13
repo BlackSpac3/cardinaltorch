@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import ConfirmDelDialog from "../ConfirmDelDialog";
 import AddImgDropZone from "@components/AddImgDropZone";
+import compressImg from "@utils/compressImg";
 
 const AddEmployee = ({ employeesPage, setEmployeesPage }) => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -41,17 +42,6 @@ const AddEmployee = ({ employeesPage, setEmployeesPage }) => {
 
     employeesPage != "add" && formData.append("id", employeesPage[1]._id);
 
-    if (!formData.get("img").name) {
-      if (employeesPage == "add") {
-        submitBttnRef.current.disabled = false;
-        return toast.error("Please add employee's image", {
-          id: "no-employee-image-selected",
-        });
-      } else {
-        formData.set("img", employeesPage[1].img);
-      }
-    }
-
     if (!formData.get("name")) {
       submitBttnRef.current.disabled = false;
       return toast.error("Please name employee", { id: "no-employee-name" });
@@ -81,6 +71,21 @@ const AddEmployee = ({ employeesPage, setEmployeesPage }) => {
     const loadingToast = toast.loading(
       employeesPage != "add" ? "Updating Employee..." : "Adding Employee..."
     );
+
+    if (!formData.get("img").name) {
+      if (employeesPage == "add") {
+        submitBttnRef.current.disabled = false;
+        return toast.error("Please add employee's image", {
+          id: "no-employee-image-selected",
+        });
+      } else {
+        formData.set("img", employeesPage[1].img);
+      }
+    } else {
+      const compressedImage = await compressImg(formData.get("img"));
+      formData.set("img", compressedImage, compressedImage.name);
+    }
+
     try {
       const res = await axios.post("/api/employees/add", formData);
       toast.dismiss(loadingToast);
