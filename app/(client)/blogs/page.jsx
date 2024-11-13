@@ -3,6 +3,8 @@ import FeaturedBlogs from "@components/blog_components/FeaturedBlogs";
 import FullImgBlogCard from "@components/blog_components/FullImgBlogCard";
 import axios from "axios";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Blogs",
 };

@@ -6,6 +6,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
+export const revalidate = 60;
+
+export const dynamicParams = true;
+
 const fetchData = cache(async (blog_id) => {
   try {
     const response = await axios.post(
