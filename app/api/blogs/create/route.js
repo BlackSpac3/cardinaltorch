@@ -1,3 +1,4 @@
+import { revalidateBlogs } from "@app/actions";
 import connectDB from "@lib/config/db";
 import activityModel from "@lib/models/activityModel";
 import blogModel from "@lib/models/blogModel";
@@ -191,6 +192,7 @@ export async function POST(request) {
         await activity.save();
       }
 
+      //revalidate path
       revalidateBlogs();
 
       return NextResponse.json(
