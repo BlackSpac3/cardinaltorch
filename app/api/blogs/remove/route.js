@@ -1,9 +1,9 @@
+import { revalidateBlogs } from "@app/actions";
 import connectDB from "@lib/config/db";
 import activityModel from "@lib/models/activityModel";
 import blogModel from "@lib/models/blogModel";
 import userModel from "@lib/models/userModel";
 import { getToken } from "next-auth/jwt";
-import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { UTApi } from "uploadthing/server";
 
@@ -85,8 +85,7 @@ export async function POST(request) {
       await activity.save();
     }
 
-    revalidatePath("/blogs/[blog_id]", "page");
-    revalidatePath("/blogs");
+    revalidateBlogs();
 
     return NextResponse.json(
       {
