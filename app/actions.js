@@ -3,6 +3,7 @@
 import jwt from "jsonwebtoken";
 import blogModel from "@lib/models/blogModel";
 import connectDB from "@lib/config/db";
+import { revalidatePath } from "next/cache";
 
 export const verifyResetPassToken = async (token) => {
   if (!token) {
@@ -30,4 +31,9 @@ export const getStaticBlogs = async () => {
   const blogs = await blogModel.find({ draft: false });
 
   return blogs;
+};
+
+export const revalidateBlogs = () => {
+  revalidatePath("/blogs/[blog_id]", "page");
+  revalidatePath("/blogs");
 };
