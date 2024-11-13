@@ -6,6 +6,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
 export const metadata = {
   title: {
     default: "Cardinal Torch",
