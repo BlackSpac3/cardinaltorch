@@ -3,6 +3,7 @@ import activityModel from "@lib/models/activityModel";
 import blogModel from "@lib/models/blogModel";
 import userModel from "@lib/models/userModel";
 import { getToken } from "next-auth/jwt";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { UTApi } from "uploadthing/server";
 
@@ -28,6 +29,14 @@ export async function POST(request) {
 
   const body = await request.json();
   const { blog_id, draft } = body;
+
+  if (!blog_id) {
+    return NextResponse.json(
+      { success: false, message: "No blog parsed" },
+      { status: 400 }
+    );
+  }
+
   let blogImages = [];
 
   try {
@@ -35,7 +44,7 @@ export async function POST(request) {
 
     const blog = await blogModel.findOneAndDelete({ blog_id });
 
-    if (blog.banner_key) {
+    if (blog?.banner_key) {
       blogImages.push(blog.banner_key);
     }
 
@@ -47,7 +56,7 @@ export async function POST(request) {
 
     if (blogImages.length) {
       const utapi = new UTApi();
-      const utres = utapi.deleteFiles(blogImages);
+      const utres = await utapi.deleteFiles(blogImages);
     }
 
     if (draft) {
@@ -75,6 +84,9 @@ export async function POST(request) {
 
       await activity.save();
     }
+
+    revalidatePath(`/blogs/${blog_id}`, "page");
+    revalidatePath("/blogs", "page");
 
     return NextResponse.json(
       {

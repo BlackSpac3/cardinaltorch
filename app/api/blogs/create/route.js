@@ -4,6 +4,7 @@ import blogModel from "@lib/models/blogModel";
 import userModel from "@lib/models/userModel";
 import { nanoid } from "nanoid";
 import { getToken } from "next-auth/jwt";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { UTApi } from "uploadthing/server";
 
@@ -190,6 +191,9 @@ export async function POST(request) {
 
         await activity.save();
       }
+
+      revalidatePath(`/blogs/${blog_id}`, "page");
+      revalidatePath("/blogs", "page");
 
       return NextResponse.json(
         { success: true, message: blog.draft ? "Draft Saved" : "Published" },

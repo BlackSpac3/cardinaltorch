@@ -8,6 +8,7 @@ const fetchData = async (email) => {
     const response = await axios.post("/api/users/get-latest-data", {
       email,
     });
+
     return response.data.data;
   } catch (error) {
     if (error.response.message) {
@@ -18,7 +19,6 @@ const fetchData = async (email) => {
     return {};
   }
 };
-
 const CurrentInfo = async () => {
   const { data: session } = useSession();
   const data = await fetchData(session?.user?.email);
@@ -49,7 +49,7 @@ const CurrentInfo = async () => {
   return (
     <div>
       <div className="">
-        <h1 className="text-xl capitalize">{`Welcome, ${session?.user?.first_name}`}</h1>
+        <h1 className="text-xl capitalize">{`Welcome, ${session?.user.first_name}`}</h1>
         <p className="text-xs w-[60%] tab-s:w-full text-gray-500">
           Let's create awesome contents for your viewers
         </p>

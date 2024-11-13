@@ -1,3 +1,4 @@
+"use client";
 import axios from "axios";
 import NoDataMessage from "../NoDataMessage";
 import toast from "react-hot-toast";
