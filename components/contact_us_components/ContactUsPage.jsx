@@ -2,6 +2,9 @@
 import { useState, useEffect } from "react";
 import { PuffLoader } from "react-spinners";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import { emailRegex } from "@utils";
+import axios from "axios";
 
 const ContactUsPage = () => {
   const inputStyle =
@@ -11,6 +14,63 @@ const ContactUsPage = () => {
 
   const handleLoad = () => {
     setLoading(false);
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const submitBttn = document.getElementById("contact-us-form-submit-button");
+    submitBttn.disabled = true;
+
+    if (!formData.get("name")) {
+      submitBttn.disabled = false;
+      return toast.error("Please enter your name", {
+        id: "contact-us-form-no-name-error",
+      });
+    }
+
+    if (!formData.get("email") || !emailRegex.test(formData.get("email"))) {
+      submitBttn.disabled = false;
+      return toast.error("Please provide a valid email", {
+        id: "contact-us-form-invalid-email-error",
+      });
+    }
+
+    if (!formData.get("message")) {
+      submitBttn.disabled = false;
+      return toast.error("Please enter a message", {
+        id: "contact-us-form-no-message-error",
+      });
+    }
+
+    const loadingToast = toast.loading("Sending...", {
+      id: "contact-us-form-sending-toast",
+    });
+    try {
+      const response = await axios.post("/api/contact-us", formData);
+      toast.dismiss(loadingToast);
+      toast.success(response.data.message, {
+        id: "contact-us-form-message-sent-successfully",
+      });
+    } catch (error) {
+      if (error.response.data.message) {
+        return toast.error(error.response.data.message, {
+          id: "contact-us-form-api-error",
+        });
+      }
+
+      return toast.error("Error connecting to server", {
+        id: "contact-us-form-server-error",
+      });
+    } finally {
+      submitBttn.disabled = false;
+    }
+
+    console.log(formData.get("name"));
+    console.log(formData.get("email"));
+    console.log(formData.get("number"));
+    console.log(formData.get("company"));
+    console.log(formData.get("message"));
   };
 
   useEffect(() => {
@@ -50,34 +110,36 @@ const ContactUsPage = () => {
       </div>
       <hr />
       <div className="grid grid-cols-2 tab-s:grid-cols-1 items-start gap-10">
-        <form action="" className="flex flex-col gap-3">
+        <form onSubmit={submitForm} className="flex flex-col gap-3">
           <div>
             <input
               required
               className={inputStyle}
               type="text"
+              name="name"
               placeholder="Name"
             />
           </div>
           <div>
             <input
-              required
-              type="email"
+              //   required
+              type="text"
+              name="email"
               className={inputStyle}
               placeholder="Email"
             />
           </div>
           <div className="grid grid-cols-2 gap-5">
             <input
-              required
               type="text"
+              name="number"
               className={inputStyle}
-              placeholder="tab-s Number"
+              placeholder="Number"
             />
 
             <input
-              required
               type="text"
+              name="company"
               className={inputStyle}
               placeholder="Company"
             />
@@ -87,14 +149,18 @@ const ContactUsPage = () => {
               <textarea
                 rows={4}
                 className={inputStyle}
-                name=""
-                id=""
+                name="message"
+                required
                 placeholder="Message"
               ></textarea>
             </div>
           </div>
           <div className="flex justify-end ">
-            <button className=" outline-green-300 px-7 py-3 rounded-full bg-primary text-white">
+            <button
+              id="contact-us-form-submit-button"
+              type="submit"
+              className=" outline-green-300 px-7 py-3 rounded-full bg-primary text-white disabled:bg-gray-100 disabled:cursor-not-allowed disabled:text-[#9ea5b0] duration-75"
+            >
               Send
             </button>
           </div>
