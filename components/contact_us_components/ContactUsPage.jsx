@@ -65,12 +65,6 @@ const ContactUsPage = () => {
     } finally {
       submitBttn.disabled = false;
     }
-
-    console.log(formData.get("name"));
-    console.log(formData.get("email"));
-    console.log(formData.get("number"));
-    console.log(formData.get("company"));
-    console.log(formData.get("message"));
   };
 
   useEffect(() => {
@@ -134,14 +128,14 @@ const ContactUsPage = () => {
               type="text"
               name="number"
               className={inputStyle}
-              placeholder="Number"
+              placeholder="Number (optional)"
             />
 
             <input
               type="text"
               name="company"
               className={inputStyle}
-              placeholder="Company"
+              placeholder="Company (optional)"
             />
           </div>
           <div>
