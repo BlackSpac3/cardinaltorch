@@ -70,7 +70,9 @@ const Gallery_pics = () => {
             </div>
           ))
         ) : (
-          <NoDataMessage message={"No images yet"} />
+          <div className="col-span-full">
+            <NoDataMessage message={"No images yet"} />
+          </div>
         )}
       </section>
       <Pagination

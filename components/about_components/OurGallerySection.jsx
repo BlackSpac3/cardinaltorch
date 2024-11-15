@@ -79,13 +79,13 @@ const Gallery_pics = () => {
         >
           {!images ? (
             <div className="w-full flex gap-2 overflow-hidden">
-              <div className="w-[40%] aspect-[10/8]">
+              <div className="w-[40%] aspect-[10/8] [@media_(max-width:_828px)]:w-[75%]">
                 <Skeleton width={"100%"} height={"100%"} />
               </div>
-              <div className="w-[40%] aspect-[10/8]">
+              <div className="w-[40%] aspect-[10/8] [@media_(max-width:_828px)]:w-[25%]">
                 <Skeleton width={"100%"} height={"100%"} />
               </div>
-              <div className="w-[20%] aspect-[10/8]">
+              <div className="w-[20%] aspect-[10/8] [@media_(max-width:_828px)]:hidden ">
                 <Skeleton width={"100%"} height={"100%"} />
               </div>
             </div>
