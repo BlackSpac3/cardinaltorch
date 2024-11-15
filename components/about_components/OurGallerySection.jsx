@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
+import Skeleton from "react-loading-skeleton";
 
 const Gallery_pics = () => {
   const [images, setImages] = useState(null);
@@ -36,6 +37,7 @@ const Gallery_pics = () => {
       console.log(error);
 
       toast.error("Error connecting to server");
+      setImages([]);
     }
   };
 
@@ -76,7 +78,17 @@ const Gallery_pics = () => {
           className="mySwiper"
         >
           {!images ? (
-            <p>Loading...</p>
+            <div className="w-full flex gap-2 overflow-hidden">
+              <div className="w-[40%] aspect-[10/8]">
+                <Skeleton width={"100%"} height={"100%"} />
+              </div>
+              <div className="w-[40%] aspect-[10/8]">
+                <Skeleton width={"100%"} height={"100%"} />
+              </div>
+              <div className="w-[20%] aspect-[10/8]">
+                <Skeleton width={"100%"} height={"100%"} />
+              </div>
+            </div>
           ) : images.length ? (
             images.map((image, index) => (
               <div>
@@ -94,9 +106,7 @@ const Gallery_pics = () => {
                 </SwiperSlide>
               </div>
             ))
-          ) : (
-            <p>No images</p>
-          )}
+          ) : null}
 
           <GalleryModal
             id={galleryModalIdName}

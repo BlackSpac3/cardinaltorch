@@ -6,6 +6,7 @@ import GalleryModal from "@components/GalleryModal";
 import toast from "react-hot-toast";
 import Pagination from "@components/admin_components/Pagination";
 import GalleryCardSkeleton from "@components/skeletons/GalleryCardSkeleton";
+import NoDataMessage from "@components/admin_components/NoDataMessage";
 
 const Gallery_pics = () => {
   const [images, setImages] = useState(null);
@@ -41,7 +42,11 @@ const Gallery_pics = () => {
         toast.error("Error connecting to server");
       });
 
-    setImages(formatedData);
+    if (formatedData) {
+      setImages(formatedData);
+    } else {
+      setImages({ results: [] });
+    }
   };
 
   useEffect(() => {
@@ -65,7 +70,7 @@ const Gallery_pics = () => {
             </div>
           ))
         ) : (
-          <p>No images</p>
+          <NoDataMessage message={"No images yet"} />
         )}
       </section>
       <Pagination

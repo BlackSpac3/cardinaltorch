@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Safety = () => {
   return (
-    <section className="grid grid-cols-2 items-center tab-s:grid-cols-1 gap-10">
+    <section className="grid grid-cols-2 items-center tab-s:flex tab-s:flex-col-reverse gap-10">
       <motion.div
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
